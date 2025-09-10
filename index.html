@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Crypto Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Advanced Background */
+        .app-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(192, 192, 192, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 60%);
+            z-index: -2;
+        }
+
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(26, 26, 26, 0.9) 0%,
+                    rgba(15, 15, 15, 0.95) 25%,
+                    rgba(20, 20, 20, 0.9) 50%,
+                    rgba(10, 10, 10, 0.95) 75%,
+                    rgba(15, 15, 15, 0.9) 100%);
+            z-index: -1;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .float-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float-animation 15s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .float-circle:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .float-circle:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #C0C0C0, #E5E5E5);
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .float-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #FFD700, #C0C0C0);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float-animation {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+            25% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+            50% { transform: translateY(-60px) translateX(-10px) scale(0.9); }
+            75% { transform: translateY(-20px) translateX(-30px) scale(1.05); }
+        }
+
+        /* App Container */
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 215, 0, 0.1);
+            border-right: 1px solid rgba(255, 215, 0, 0.1);
+            min-height: 100vh;
+        }
+
+        /* Status Bar Simulation */
+        .status-bar {
+            height: 44px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time { color: #FFD700; }
+        .battery { color: #C0C0C0; }
+
+        /* Header */
+        .app-header {
+            padding: 30px 20px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+        }
+
+        .app-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700 0%, #C0C0C0 50%, #FFD700 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-subtitle {
+            font-size: 1rem;
+            color: rgba(192, 192, 192, 0.9);
+            font-weight: 500;
+        }
+
+        /* Linktree Section */
+        .linktree-section {
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-button {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 26, 0.9) 0%, 
+                rgba(15, 15, 15, 0.95) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 215, 0, 0.1) 50%, 
+                transparent 100%);
+            transition: left 0.5s ease;
+        }
+
+        .link-button:hover::before,
+        .link-button:active::before {
+            left: 100%;
+        }
+
+        .link-button:active {
+            transform: scale(0.98);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .pdf-link:hover,
+        .pdf-link:active {
+            background: linear-gradient(135deg, 
+                rgba(220, 53, 69, 0.15) 0%, 
+                rgba(26, 26, 26, 0.9) 100%);
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+
+        .whatsapp-link:hover,
+        .whatsapp-link:active {
+            background: linear-gradient(135deg, 
+                rgba(37, 211, 102, 0.15) 0%, 
+                rgba(26, 26, 26, 0.9) 100%);
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .telegram-link:hover,
+        .telegram-link:active {
+            background: linear-gradient(135deg, 
+                rgba(44, 165, 224, 0.15) 0%, 
+                rgba(26, 26, 26, 0.9) 100%);
+            border-color: rgba(44, 165, 224, 0.3);
+        }
+
+        .link-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .link-content {
+            flex: 1;
+        }
+
+        .link-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .link-desc {
+            font-size: 0.85rem;
+            color: rgba(192, 192, 192, 0.7);
+        }
+
+        .link-arrow {
+            font-size: 1.2rem;
+            color: #FFD700;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .link-button:hover .link-arrow,
+        .link-button:active .link-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .social-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 26, 0.8) 0%, 
+                rgba(15, 15, 15, 0.9) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-button:active {
+            transform: scale(0.9);
+        }
+
+        .instagram:hover::before,
+        .instagram:active::before {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(225, 48, 108, 0.2) 0%, rgba(188, 42, 141, 0.2) 100%);
+        }
+
+        .youtube:hover::before,
+        .youtube:active::before {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
+        }
+
+        .tiktok:hover::before,
+        .tiktok:active::before {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(105, 178, 255, 0.2) 0%, rgba(255, 0, 80, 0.2) 100%);
+        }
+
+        .facebook:hover::before,
+        .facebook:active::before {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(24, 119, 242, 0.2) 0%, rgba(0, 102, 204, 0.2) 100%);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 0 20px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(192, 192, 192, 0.1) 50%, 
+                rgba(255, 215, 0, 0.08) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .crypto-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .crypto-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .crypto-badge.usdt {
+            background: linear-gradient(45deg, #26A17B, #50AF95);
+            color: #fff;
+        }
+
+        .crypto-badge.binance {
+            background: linear-gradient(45deg, #F3BA2F, #FCD535);
+            color: #000;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:active {
+            transform: scale(0.98);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .feature-desc {
+            color: rgba(192, 192, 192, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            background: linear-gradient(135deg, 
+                rgba(15, 15, 15, 0.9) 0%, 
+                rgba(26, 26, 26, 0.8) 100%);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(15px);
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .price-currency {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .bonus-card {
+            background: linear-gradient(45deg, 
+                rgba(192, 192, 192, 0.1), 
+                rgba(255, 215, 0, 0.1));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        .bonus-title {
+            color: #C0C0C0;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .bonus-amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+
+        .bonus-desc {
+            color: rgba(192, 192, 192, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            padding: 0 20px 30px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Learning List */
+        .learning-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .learning-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .learning-item {
+            background: linear-gradient(90deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 100%);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid #FFD700;
+            backdrop-filter: blur(5px);
+        }
+
+        .learning-title {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .learning-desc {
+            color: rgba(192, 192, 192, 0.8);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .app-footer {
+            padding: 20px;
+            text-align: center;
+            color: rgba(192, 192, 192, 0.6);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        /* Bottom safe area for iOS */
+        .safe-area-bottom {
+            height: env(safe-area-inset-bottom, 20px);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+
+        .loading-shimmer {
+            animation: shimmer 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-background"></div>
+    <div class="mesh-gradient"></div>
+    <div class="floating-elements">
+        <div class="float-circle"></div>
+        <div class="float-circle"></div>
+        <div class="float-circle"></div>
+    </div>
+
+    <div class="app-container">
+        <div class="status-bar">
+            <div class="time">Astrocrypto</div>
+            <div class="battery">Criptomonedas - Wallets - Mineria - Nodos</div>
+        </div>
+
+        <header class="app-header">
+            <h1 class="app-title">Astro Crypto</h1>
+            <p class="app-subtitle">Tu camino hacia la libertad financiera digital, mira hacia el futuro y las monedas digitales</p>
+        </header>
+
+        <!-- Linktree Section -->
+        <div class="linktree-section">
+            <div class="links-container">
+                <a href="https://drive.google.com/file/d/1MFn35SedYjEhFckQPVPN9go5g3HU-HB_/view" class="link-button pdf-link" onclick="handleLinkClick('pdf')">
+                    <div class="link-icon">📄</div>
+                    <div class="link-content">
+                        <div class="link-title">Descargar PDF</div>
+                        <div class="link-desc">Guía gratuita del curso para principiantes</div>
+                    </div>
+                    <div class="link-arrow">→</div>
+                </a>
+
+                <a href="https://wa.me/59176382164?text=Vengo%20por%20mas%20informacion%20de%20criptomonedas" class="link-button whatsapp-link" onclick="handleLinkClick('whatsapp')">
+                    <div class="link-icon">💬</div>
+                    <div class="link-content">
+                        <div class="link-title">Quieres Comunicarte Conmigo?</div>
+                        <div class="link-desc">Consultas directas</div>
+                    </div>
+                    <div class="link-arrow">→</div>
+                </a>
+
+                <a href="https://t.me/+5gl4Auh627gyYjBh" class="link-button telegram-link" onclick="handleLinkClick('telegram')">
+                    <div class="link-icon">✈️</div>
+                    <div class="link-content">
+                        <div class="link-title">Canal Oficial para todos nosotros</div>
+                        <div class="link-desc">Preguntas, Debates, Tokens, NFTs</div>
+                    </div>
+                    <div class="link-arrow">→</div>
+                </a>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/astrocrypt0ficial/" class="social-button instagram" onclick="handleLinkClick('instagram')">
+                        <span class="social-icon">📷</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@astr0crypt0s" class="social-button tiktok" onclick="handleLinkClick('tiktok')">
+                        <span class="social-icon">🎵</span>
+                    </a>
+                    <a href="https://www.facebook.com/AstroCripto" class="social-button facebook" onclick="handleLinkClick('facebook')">
+                        <span class="social-icon">👥</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="hero-card">
+                <p class="hero-text">
+                    Domina <strong>Bitcoin</strong>, <strong>USDT</strong> y <strong>Exchance</strong> desde cero. 
+                    Aprende a usar tarjetas digitales y conviértete en un experto crypto.
+                </p>
+                <div class="crypto-badges">
+                    <span class="crypto-badge">BTC</span>
+                    <span class="crypto-badge usdt">USDT</span>
+                    <span class="crypto-badge binance">BINANCE</span>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-title">Bitcoin & USDT</div>
+                    </div>
+                    <p class="feature-desc">
+                        Aprende a manejar las criptomonedas más importantes del mercado de forma segura y profesional.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">💳</div>
+                        <div class="feature-title">Tarjetas Digitales</div>
+                    </div>
+                    <p class="feature-desc">
+                        Usa tus cryptos en el mundo real con tarjetas digitales para compras diarias.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">🏦</div>
+                        <div class="feature-title">Binance Exchange</div>
+                    </div>
+                    <p class="feature-desc">
+                        Domina completamente Binance, la exchange más grande del mundo crypto.
+                    </p>
+                </div>
+            </div>
+
+            <div class="learning-section">
+                <h2 class="section-title">Lo que dominarás</h2>
+                <div class="learning-list">
+                    <div class="learning-item">
+                        <div class="learning-title">✓ Fundamentos de Bitcoin</div>
+                        <div class="learning-desc">Qué es, cómo funciona y cómo usarlo</div>
+                    </div>
+                    <div class="learning-item">
+                        <div class="learning-title">✓ USDT Práctico</div>
+                        <div class="learning-desc">Stablecoins para uso diario</div>
+                    </div>
+                    <div class="learning-item">
+                        <div class="learning-title">✓ Binance Completo</div>
+                        <div class="learning-desc">Trading, staking y todas sus funciones</div>
+                    </div>
+                    <div class="learning-item">
+                        <div class="learning-title">✓ Tarjetas Crypto</div>
+                        <div class="learning-desc">Gasta cryptos como dinero tradicional</div>
+                    </div>
+                    <div class="learning-item">
+                        <div class="learning-title">✓ Seguridad Total</div>
+                        <div class="learning-desc">Protege tus activos digitales</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-card">
+                <div class="price-tag">
+                    <div class="price-amount">500</div>
+                    <div class="price-currency">Bolivianos</div>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-title">🎁 BONUS INCLUIDO</div>
+                    <div class="bonus-amount">150 Bs</div>
+                    <div class="bonus-desc">en tokens para práctica real</div>
+                </div>
+
+                <div style="color: rgba(192, 192, 192, 0.9); font-size: 0.9rem; line-height: 1.6;">
+                    ✨ Acceso inmediato<br>
+                    🎯 100% práctico con tokens reales<br>
+                    ⚡ Aprende haciendo, no solo teoría
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-container">
+        <button class="cta-button" onclick="window.open('https://wa.me/59176382164?text=Quiero%20acceder%20al%20curso', '_blank')">
+        🚀 Empezar Ahora
+        </button>
+        </div>
+
+
+
+        <footer class="app-footer">
+            <p>© 2025 AstroCrypto - Educación financiera digital</p>
+        </footer>
+
+        <div class="safe-area-bottom"></div>
+    </div>
+
+    <script>
+        function handleCTA() {
+            // Vibration feedback for mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+            
+            alert('¡Excelente decisión! Contacta con nosotros para comenzar tu transformación crypto.');
+        }
+
+        function handleLinkClick(type) {
+            // Vibration feedback for mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(30);
+            }
+
+            const messages = {
+                pdf: '📄 Descargando guía gratuita del curso...\n\n¡Perfecto! En breve recibirás el PDF con toda la información.',
+                whatsapp: '💬 Redirigiendo a WhatsApp...\n\n¡Hablemos! Estamos listos para resolver todas tus dudas.',
+                telegram: '✈️ Únete a nuestro canal de Telegram...\n\n¡Bienvenido a la comunidad crypto!',
+                instagram: '📷 Síguenos en Instagram para contenido exclusivo',
+                youtube: '📺 Suscríbete a nuestro canal de YouTube',
+                tiktok: '🎵 Síguenos en TikTok para tips rápidos',
+                facebook: '👥 Únete a nuestra comunidad en Facebook'
+            };
+
+            alert(messages[type] || 'Redirigiendo...');
+        }
+
+        // App-like loading simulation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for smooth animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Animate elements on scroll
+            document.querySelectorAll('.feature-card, .learning-item, .link-button').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+
+            // Smooth scroll to pricing on feature tap
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    document.querySelector('.pricing-card').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                });
+            });
+
+            // Add loading shimmer effect initially
+            setTimeout(() => {
+                document.querySelectorAll('.feature-card, .link-button').forEach(card => {
+                    card.classList.remove('loading-shimmer');
+                });
+            }, 1000);
+        });
+
+        // PWA-like experience
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+    </script>
+</body>
+</html>
