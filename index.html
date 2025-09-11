@@ -442,6 +442,229 @@
             line-height: 1.5;
         }
 
+        /* Learning Section */
+        .learning-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .learning-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .learning-item {
+            background: linear-gradient(90deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 100%);
+            border-radius: 12px;
+            border-left: 3px solid #FFD700;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .learning-item:hover {
+            background: linear-gradient(90deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                transparent 100%);
+            border-left: 3px solid #FFA500;
+        }
+
+        .learning-header {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .learning-title {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .learning-desc {
+            color: rgba(192, 192, 192, 0.8);
+            font-size: 0.85rem;
+        }
+
+        .expand-icon {
+            color: #FFD700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .learning-item.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .learning-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .learning-details.show {
+            max-height: 500px;
+        }
+
+        .details-content {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .details-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .details-list li {
+            padding: 5px 0;
+            color: rgba(192, 192, 192, 0.9);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .details-list li::before {
+            content: '▸';
+            color: #FFD700;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 30px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .faq-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.show {
+            max-height: 200px;
+        }
+
+        .faq-answer-content {
+            padding: 0 20px 20px;
+            color: rgba(192, 192, 192, 0.8);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            margin-bottom: 30px;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            margin-right: 12px;
+        }
+
+        .reviewer-info {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .review-stars {
+            color: #FFD700;
+            font-size: 0.8rem;
+        }
+
+        .review-text {
+            color: rgba(192, 192, 192, 0.9);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
         /* Pricing Section */
         .pricing-card {
             background: linear-gradient(135deg, 
@@ -532,47 +755,6 @@
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
-        /* Learning List */
-        .learning-section {
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #FFD700;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .learning-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .learning-item {
-            background: linear-gradient(90deg, 
-                rgba(255, 215, 0, 0.1) 0%, 
-                transparent 100%);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 3px solid #FFD700;
-            backdrop-filter: blur(5px);
-        }
-
-        .learning-title {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .learning-desc {
-            color: rgba(192, 192, 192, 0.8);
-            font-size: 0.85rem;
-        }
-
         /* Footer */
         .app-footer {
             padding: 20px;
@@ -656,13 +838,13 @@
 
                 <div class="social-links">
                     <a href="https://www.instagram.com/astrocrypt0ficial/" class="social-button instagram" onclick="handleLinkClick('instagram')">
-                        <span class="social-icon">📷</span>
+                        <span class="social-icon">◉</span>
                     </a>
                     <a href="https://www.tiktok.com/@astr0crypt0s" class="social-button tiktok" onclick="handleLinkClick('tiktok')">
-                        <span class="social-icon">🎵</span>
+                        <span class="social-icon">♪</span>
                     </a>
                     <a href="https://www.facebook.com/AstroCripto" class="social-button facebook" onclick="handleLinkClick('facebook')">
-                        <span class="social-icon">👥</span>
+                        <span class="social-icon">f</span>
                     </a>
                 </div>
             </div>
@@ -717,24 +899,212 @@
                 <h2 class="section-title">Lo que dominarás</h2>
                 <div class="learning-list">
                     <div class="learning-item">
-                        <div class="learning-title">✓ Fundamentos de Bitcoin</div>
-                        <div class="learning-desc">Qué es, cómo funciona y cómo usarlo</div>
+                        <div class="learning-header">
+                            <div>
+                                <div class="learning-title">✓ Fundamentos de Bitcoin</div>
+                                <div class="learning-desc">Qué es, cómo funciona y cómo usarlo</div>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="learning-details">
+                            <div class="details-content">
+                                <ul class="details-list">
+                                    <li>Historia y origen de Bitcoin</li>
+                                    <li>Tecnología blockchain explicada</li>
+                                    <li>Creación de wallets seguras</li>
+                                    <li>Envío y recepción de BTC</li>
+                                    <li>Seguridad y respaldos</li>
+                                    <li>Análisis de fees y tiempos</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="learning-item">
-                        <div class="learning-title">✓ USDT Práctico</div>
-                        <div class="learning-desc">Stablecoins para uso diario</div>
+                        <div class="learning-header">
+                            <div>
+                                <div class="learning-title">✓ USDT Práctico</div>
+                                <div class="learning-desc">Stablecoins para uso diario</div>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="learning-details">
+                            <div class="details-content">
+                                <ul class="details-list">
+                                    <li>Qué es USDT y por qué es importante</li>
+                                    <li>Diferentes redes (TRC20, ERC20, BSC)</li>
+                                    <li>Conversiones a moneda local</li>
+                                    <li>P2P trading seguro</li>
+                                    <li>Pagos con USDT</li>
+                                    <li>Estrategias de ahorro estable</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="learning-item">
-                        <div class="learning-title">✓ Binance Completo</div>
-                        <div class="learning-desc">Trading, staking y todas sus funciones</div>
+                        <div class="learning-header">
+                            <div>
+                                <div class="learning-title">✓ Binance Completo</div>
+                                <div class="learning-desc">Trading, staking y todas sus funciones</div>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="learning-details">
+                            <div class="details-content">
+                                <ul class="details-list">
+                                    <li>Registro y verificación KYC</li>
+                                    <li>Interface completa explicada</li>
+                                    <li>Trading básico y avanzado</li>
+                                    <li>Staking y earning productos</li>
+                                    <li>P2P marketplace</li>
+                                    <li>Binance Pay y servicios</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="learning-item">
-                        <div class="learning-title">✓ Tarjetas Crypto</div>
-                        <div class="learning-desc">Gasta cryptos como dinero tradicional</div>
+                        <div class="learning-header">
+                            <div>
+                                <div class="learning-title">✓ Tarjetas Crypto</div>
+                                <div class="learning-desc">Gasta cryptos como dinero tradicional</div>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="learning-details">
+                            <div class="details-content">
+                                <ul class="details-list">
+                                    <li>Binance Card setup completo</li>
+                                    <li>Otras tarjetas crypto disponibles</li>
+                                    <li>Compras online y físicas</li>
+                                    <li>ATM y retiros de efectivo</li>
+                                    <li>Cashback y recompensas</li>
+                                    <li>Gestión de gastos crypto</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="learning-item">
-                        <div class="learning-title">✓ Seguridad Total</div>
-                        <div class="learning-desc">Protege tus activos digitales</div>
+                        <div class="learning-header">
+                            <div>
+                                <div class="learning-title">✓ Seguridad Total</div>
+                                <div class="learning-desc">Protege tus activos digitales</div>
+                            </div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="learning-details">
+                            <div class="details-content">
+                                <ul class="details-list">
+                                    <li>2FA y autenticación múltiple</li>
+                                    <li>Hardware wallets recomendadas</li>
+                                    <li>Detección de scams y phishing</li>
+                                    <li>Respaldos seguros de seeds</li>
+                                    <li>Protocolos de seguridad personal</li>
+                                    <li>Qué hacer en caso de hack</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <div class="faq-question">¿Es seguro para principiantes?</div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Absolutamente. El curso está diseñado específicamente para personas sin experiencia previa. Comenzamos desde lo más básico y avanzamos paso a paso con ejercicios prácticos.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <div class="faq-question">¿Incluye tokens reales para practicar?</div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sí, incluimos 150 Bs en tokens reales para que puedas practicar todas las operaciones sin riesgo. Es dinero real para tu aprendizaje.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <div class="faq-question">¿Cuánto tiempo dura el curso?</div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                El contenido completo se puede completar en 2-3 semanas dedicando 1 hora diaria. Tienes acceso de por vida para repasar cuando quieras.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <div class="faq-question">¿Hay soporte personalizado?</div>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sí, tenemos un canal de Telegram exclusivo donde resuelvo dudas diariamente. También puedes contactarme directamente por WhatsApp.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <h2 class="section-title">Lo que dicen nuestros estudiantes</h2>
+                <div class="reviews-container">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">M</div>
+                            <div class="reviewer-info">
+                                <div class="reviewer-name">María González</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            "Excelente curso, muy didáctico. Ahora uso mi tarjeta Binance para todo y hasta gano cashback. Los tokens de práctica fueron perfectos para perder el miedo."
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">J</div>
+                            <div class="reviewer-info">
+                                <div class="reviewer-name">Jorge Mendez</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            "Como empresario, necesitaba entender las cryptos. Este curso me abrió un mundo nuevo. Ahora acepto pagos en USDT en mi negocio."
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">L</div>
+                            <div class="reviewer-info">
+                                <div class="reviewer-name">Luis Vargas</div>
+                                <div class="review-stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            "Partí de cero total. Ahora manejo Bitcoin, hago staking en Binance y hasta ayudo a mis amigos. El soporte en Telegram es increíble."
+                        </div>
                     </div>
                 </div>
             </div>
@@ -760,12 +1130,10 @@
         </div>
 
         <div class="cta-container">
-        <button class="cta-button" onclick="window.open('https://wa.me/59176382164?text=Quiero%20acceder%20al%20curso', '_blank')">
-        🚀 Empezar Ahora
-        </button>
+            <button class="cta-button" onclick="window.open('https://wa.me/59176382164?text=Quiero%20acceder%20al%20curso', '_blank')">
+                🚀 Empezar Ahora
+            </button>
         </div>
-
-
 
         <footer class="app-footer">
             <p>© 2025 AstroCrypto - Educación financiera digital</p>
@@ -803,8 +1171,50 @@
             alert(messages[type] || 'Redirigiendo...');
         }
 
-        // App-like loading simulation
+        // Toggle learning items
         document.addEventListener('DOMContentLoaded', function() {
+            const learningItems = document.querySelectorAll('.learning-item');
+            learningItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const details = this.querySelector('.learning-details');
+                    const icon = this.querySelector('.expand-icon');
+                    
+                    this.classList.toggle('expanded');
+                    details.classList.toggle('show');
+                    
+                    if (details.classList.contains('show')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            // Toggle FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const answer = this.querySelector('.faq-answer');
+                    const icon = this.querySelector('.expand-icon');
+                    
+                    // Close other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== this) {
+                            otherItem.querySelector('.faq-answer').classList.remove('show');
+                            otherItem.querySelector('.expand-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
+                    
+                    answer.classList.toggle('show');
+                    
+                    if (answer.classList.contains('show')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
             // Intersection Observer for smooth animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -818,7 +1228,7 @@
             });
 
             // Animate elements on scroll
-            document.querySelectorAll('.feature-card, .learning-item, .link-button').forEach(el => {
+            document.querySelectorAll('.feature-card, .learning-item, .link-button, .faq-item, .review-card').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
